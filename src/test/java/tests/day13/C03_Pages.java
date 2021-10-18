@@ -20,7 +20,9 @@ public class C03_Pages extends TestBase {
         AmazonPage amazonPage=new AmazonPage(driver);
         Select select=new Select(amazonPage.dropDownMenu);
         select.selectByVisibleText("Books");
+
         amazonPage.aramaKutusu.sendKeys("java"+ Keys.ENTER);
+
         System.out.println(amazonPage.sonucYazisiElementi.getText());
 
         Assert.assertTrue(amazonPage.ilkUrunIsim.getText().contains("Java"));
