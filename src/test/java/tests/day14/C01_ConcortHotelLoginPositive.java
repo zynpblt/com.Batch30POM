@@ -22,7 +22,9 @@ public class C01_ConcortHotelLoginPositive extends TestBase {
         // test data password : Manager1!
         concortHotelPage.passwordKutusu.sendKeys("Manager1!");
         concortHotelPage.loginButonu.click();
+
         // Degerleri girildiginde sayfaya basarili sekilde girilebildigini test et
+
         Assert.assertTrue(concortHotelPage.basariliGirisYaziElementi.isDisplayed());
     }
 }
