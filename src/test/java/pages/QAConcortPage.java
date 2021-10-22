@@ -7,6 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.util.List;
+
 public class QAConcortPage {
     public WebDriver driver;
     public QAConcortPage(){
@@ -42,7 +44,47 @@ public class QAConcortPage {
 
     @FindBy(id="Code")
     public WebElement addHotelCodeKutusu;
+    @FindBy(partialLinkText = "Hotel Rooms")
+    public WebElement hotelRoomsLinki;
 
+    @FindBy(xpath ="//span[text()='Add Hotelroom ']")
+    public WebElement addHotelRoomButonu;
+
+    @FindBy(id="IDHotel")
+    public WebElement addRoomIdDropdown;
+
+    @FindBy(id="IDGroupRoomType")
+    public WebElement addRoomType;
+
+    @FindBy(id="btnSubmit")
+    public WebElement addRoomSaveButonu;
+
+    @FindBy(xpath = "//div[@class='bootbox-body']")
+    public WebElement addRoomSuccessfulYazisi;
+
+    @FindBy(xpath = "//button[@class='btn btn-primary']")
+    public WebElement addRoomAllertOkButonu;
+
+    @FindBy(linkText = "Hotelrooms")
+    public WebElement addroomHotelRoomsLinki;
+
+    @FindBy(xpath ="//span[text()='List Of Hotelrooms']")
+    public WebElement addRoomHotelRoomListyazisi;
+
+    @FindBy(xpath = "//thead/tr[1]/th")
+    public List<WebElement> basliklarListesi;
+
+    @FindBy(xpath = "//tbody")
+    public WebElement tBodyTumu;
+
+    @FindBy(xpath = "//tbody//tr")
+    public List<WebElement> satirlarListesi;
+
+    @FindBy(xpath = "//tbody//tr[1]")
+    public WebElement birinciSatir;
+
+    @FindBy(xpath = "//tbody/tr//td[4]")
+    public List<WebElement> dorduncuSutunListesi;
 
 
 
