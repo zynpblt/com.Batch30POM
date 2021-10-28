@@ -3,6 +3,7 @@ package tests.day19;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AmazonPage;
@@ -68,8 +69,22 @@ public class C03_Raporlama extends TestBaseRapor {
 
     @Test
     public void test3(){
-        //amazon sayfasina gidip
-        //electronic kategorisinde java  icin arama yapalim
-        //cikan sonuclardan ilkinin isminde java oldugunu test edelim
+        // amazon sayfasina gidip
+        // electronic kategorisinde java icin arama yapalim
+        extentTest=extentReports.createTest("java testi","ilk urunde java olmali");
+        Driver.getDriver().get(ConfigReader.getProperty("amazonUrl"));
+        extentTest.info("amazona gidildi");
+        Select select=new Select(Driver.getDriver().findElement(By.id("searchDropdownBox")));
+        select.selectByVisibleText("Electronics");
+        extentTest.info("dropdown dan electronics secildi");
+        WebElement aramaKutusu=Driver.getDriver().findElement(By.id("twotabsearchtextbox"));
+        aramaKutusu.sendKeys("Java"+Keys.ENTER);
+        extentTest.info("java kelimesi aratildi");
+        // cikan sonuclardan ilkinin isminde java oldugunu test edelim
+        WebElement ikinciUrun=Driver.getDriver().findElement(By.xpath("(//div[@class='s-expand-height s-include-content-margin s-latency-cf-section s-border-bottom'])[1]"));
+        String ikinciElementYazisi=ikinciUrun.getText();
+        Assert.assertTrue(ikinciElementYazisi.contains("Java"));
+        extentTest.pass("ilk urun isminde java oldugu test edildi");
     }
 }
+
