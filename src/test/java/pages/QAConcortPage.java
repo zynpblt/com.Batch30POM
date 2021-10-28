@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,6 +45,19 @@ public class QAConcortPage {
 
     @FindBy(id="Code")
     public WebElement addHotelCodeKutusu;
+
+    @FindBy(id="IDGroup")
+    public WebElement addHotelDropdown;
+
+    @FindBy(id="btnSubmit")
+    public WebElement addHotelSave;
+
+    @FindBy(xpath="//div[@class='bootbox-body']")
+    public WebElement addHotelSuccesfullYazisi;
+
+    @FindBy(xpath="//button[@class='btn btn-primary']")
+    public WebElement addHotelAllertOk;
+
     @FindBy(partialLinkText = "Hotel Rooms")
     public WebElement hotelRoomsLinki;
 
@@ -88,6 +102,10 @@ public class QAConcortPage {
 
 
 
+
+
+
+
     public void ConcortHotelLogin(){
         Driver.getDriver().get(ConfigReader.getProperty("CHQAUrl"));
         QAConcortPage qaConcortPage=new QAConcortPage();
@@ -95,5 +113,22 @@ public class QAConcortPage {
         qaConcortPage.usernameKutusu.sendKeys(ConfigReader.getProperty("CHQAValidUsername"));
         qaConcortPage.passwordKutusu.sendKeys(ConfigReader.getProperty("CHQAValidPassword"));
         qaConcortPage.loginButonu.click();
+    }
+
+    public String printData(int satir, int sutun) {
+        // ornekteki haliyle 3.satir, 5.sutundaki elemani yazdiralim
+        //  String xpath= //tbody//tr[3]//td[5]
+        // degismeyecek kisimlari String, degisecek kisimlari ise parametre ismi olarak yazdik
+        String xpath= "//tbody//tr[" + satir +"]//td["+ sutun + "]";
+        //System.out.println(xpath);
+
+        // satir no : 3, sutun no : 5
+        //System.out.println("satir no : "+ satir+ " sutun no : " + sutun);
+
+        // @FindBy notasyonu parametreli calismadigi icin onceki yontemle locate edelim
+        String istenenData = Driver.getDriver().findElement(By.xpath(xpath)).getText();
+        System.out.println("satir no  "+ satir+ ", sutun no : " + sutun + "'deki data : " + istenenData );
+
+        return istenenData;
     }
 }

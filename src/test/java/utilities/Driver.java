@@ -10,6 +10,7 @@ import org.openqa.selenium.opera.OperaDriver;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
+
     private Driver(){
 
     }
